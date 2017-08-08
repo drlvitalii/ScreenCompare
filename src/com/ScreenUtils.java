@@ -107,16 +107,16 @@ public class ScreenUtils {
         return reg;
     }
 
-    public static void markDifferentSections(int[][] array, int count) {
+    public static int markDifferentSections(int[][] array, int count) {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
                 if (array[i][j] == -1) {
                     recur(array, i, j, count);
                     count++;
-//                    System.out.println("+++" + count);
                 }
             }
         }
+        return count;
     }
 
     public static void recur(int[][] array, int i, int j, int count) {
