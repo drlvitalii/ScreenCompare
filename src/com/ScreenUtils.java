@@ -123,13 +123,10 @@ public class ScreenUtils {
         try {
             for (int k = i; k < i + 2; k++) {
                 for (int l = j + 1; l < j + 2; l++) {
-                    if (array[k][l] != -1 || array[k][l] != count) {
+                    if (array[k][l] == -1 ) {
+                        recur(array, k, l, count);
                         array[k][l] = count;
-                        return array;
                     }
-                    recur(array, k, l, count);
-                    return array;
-
                 }
             }
         } catch (IndexOutOfBoundsException e) {
