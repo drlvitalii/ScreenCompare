@@ -2,45 +2,24 @@ package com;
 
 
 public class TempMain {
-    private static int ROWS = 20;
-    private static int COLUMNS = 50;
+    private static int ROWS = 5;
+    private static int COLUMNS = 20;
     private static int counter = 1;
 
 
     public static void main(String[] args) {
 
-        int[][] arrray = createArray(ROWS, COLUMNS);
-        printArray(arrray);
+        int[][] arrray = createTestArray(ROWS, COLUMNS);
 
         counter = ScreenUtils.markDifferentSections(arrray, counter);
 
         System.out.println("--------");
-        printArray(arrray);
         for (int i = 1; i < counter; i++) {
-            System.out.println(ScreenUtils.getCoordinates(arrray, i));
+            System.out.println(ScreenUtils.getRectangeCoordinates(arrray, i));
         }
         System.out.println("--------");
     }
-
-
-    private static void printArray(int[][] ar) {
-
-        for (int i = 0; i < ar.length; i++) {
-            for (int j = 0; j < ar[i].length; j++) {
-                if (ar[i][j] == -1) {
-//                    System.out.print(ar[i][j]);
-                    System.out.print("+");
-                } else if (ar[i][j] == 0) {
-                    System.out.print(ar[i][j]);
-                } else {
-                    System.out.print(ar[i][j]);
-                }
-            }
-            System.out.println();
-        }
-    }
-
-    public static int[][] createArray(int a, int b) {
+    public static int[][] createTestArray(int a, int b) {
         int[][] ar = new int[a][b];
         for (int i = 0; i < ar.length; i++) {
             for (int j = 0; j < ar[i].length; j++) {
@@ -112,6 +91,4 @@ public class TempMain {
         }
         return ar;
     }
-
-
 }
