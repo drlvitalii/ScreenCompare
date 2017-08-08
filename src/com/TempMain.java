@@ -1,8 +1,6 @@
-package com.company;
+package com;
 
-/**
- * Created by mrGreen on 06.08.2017.
- */
+
 public class TempMain {
     private static int ROWS = 7;
     private static int COLUMNS = 7;
