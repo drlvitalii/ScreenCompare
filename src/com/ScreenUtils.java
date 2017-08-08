@@ -12,11 +12,12 @@ public class ScreenUtils {
     private static BufferedImage image2;
     private static BufferedImage imageResult;
 
-    private static String path1 = "F:\\image1.png";
-    private static String path2 = "F:\\image2.png";
-    private static String path3 = "F:\\image3.png";
+    private static String localPath = "C:\\Users\\user4\\Documents\\TEST";
+    private static String path1 = localPath + "\\image1.png";
+    private static String path2 = localPath + "\\image2.png";
+    private static String path3 = localPath + "\\image3.png";
 
-    private static int SECTION_MARKER = 1;
+    private static int counter = 1;
 
     public static void main(String[] args) {
         ScreenUtils sc = new ScreenUtils();
@@ -25,8 +26,8 @@ public class ScreenUtils {
             sc.image2 = downloadImage(path2);
             sc.imageResult = new BufferedImage(image1.getWidth(), image1.getHeight(), BufferedImage.TYPE_INT_RGB);
             int[][] imageDifferenceArray = makeArrayWithDifferentCells(sc.image1, sc.image2);
-            markDifferentSections(imageDifferenceArray, SECTION_MARKER);
-            Region rec1 = getCoordinates(imageDifferenceArray, 4);
+            markDifferentSections(imageDifferenceArray, counter);
+            Region rec1 = getCoordinates(imageDifferenceArray, counter);
             drawRectangle(imageResult, rec1);
             saveImage(imageResult, path3);
 
