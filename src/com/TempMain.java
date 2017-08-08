@@ -10,7 +10,7 @@ public class TempMain {
         int[][] arrray = createArray(ROWS, COLUMNS);
         printArray(arrray);
 
-        arrray = ScreenUtils.markDifferentSections(arrray, 2);
+        ScreenUtils.markDifferentSections(arrray, 3);
         System.out.println(ScreenUtils.getCoordinates(arrray,1));
             System.out.println("--------");
         printArray(arrray);

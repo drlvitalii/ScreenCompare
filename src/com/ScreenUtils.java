@@ -25,8 +25,8 @@ public class ScreenUtils {
             sc.image2 = downloadImage(path2);
             sc.imageResult = new BufferedImage(image1.getWidth(), image1.getHeight(), BufferedImage.TYPE_INT_RGB);
             int[][] imageDifferenceArray = makeArrayWithDifferentCells(sc.image1, sc.image2);
-            int[][] imageDifferenceMarkedArray = markDifferentSections(imageDifferenceArray, SECTION_MARKER);
-            Region rec1 = getCoordinates(imageDifferenceMarkedArray, 4);
+            markDifferentSections(imageDifferenceArray, SECTION_MARKER);
+            Region rec1 = getCoordinates(imageDifferenceArray, 4);
             drawRectangle(imageResult, rec1);
             saveImage(imageResult, path3);
 
@@ -74,10 +74,10 @@ public class ScreenUtils {
 //                    System.out.print("0");
                 } else {
                     resultArray[i][j] = -1;
-//                    System.err.print("+");
+                    System.out.print("+");
                 }
             }
-//            System.out.println();
+            System.out.println();
         }
         return resultArray;
     }
@@ -107,30 +107,34 @@ public class ScreenUtils {
         return reg;
     }
 
-    public static int[][] markDifferentSections(int[][] array, int count) {
+    public static void markDifferentSections(int[][] array, int count) {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
                 if (array[i][j] == -1) {
-                    array = recur(array, i, j, count);
+                    recur(array, i, j, count);
                     count++;
+//                    System.out.println("+++" + count);
                 }
             }
         }
-        return array;
     }
 
-    public static int[][] recur(int[][] array, int i, int j, int count) {
+    public static void recur(int[][] array, int i, int j, int count) {
+
         try {
-            for (int k = i; k < i + 2; k++) {
-                for (int l = j + 1; l < j + 2; l++) {
-                    if (array[k][l] == -1 ) {
-                        recur(array, k, l, count);
-                        array[k][l] = count;
-                    }
-                }
+            array[i][j] = count;
+            if (array[i][j - 1] == -1) {
+                recur(array, i, j - 1, count);
             }
+            if (array[i + 1][j] == -1) {
+                recur(array, i+1, j , count);
+            }
+            if (array[i][j + 1] == -1) {
+                recur(array, i, j + 1, count);
+            }
+            return;
         } catch (IndexOutOfBoundsException e) {
+
         }
-        return array;
     }
 }
