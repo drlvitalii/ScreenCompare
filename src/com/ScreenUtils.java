@@ -17,9 +17,9 @@ public class ScreenUtils {
     private static BufferedImage imageResult;
 
     private static String absolutePath = "F:";
-    private static String path1 = absolutePath + "\\fur1.png";
-    private static String path2 = absolutePath + "\\fur2.png";
-    private static String resultPath = absolutePath + "\\fur3.png";
+    private static String path1 = absolutePath + "\\image1.png";
+    private static String path2 = absolutePath + "\\image2.png";
+    private static String resultPath = absolutePath + "\\image3.png";
 
     public static final int NEAREST_PIXEL_GAP = 3;
     private static int zoneMarkerCounter = 1;
