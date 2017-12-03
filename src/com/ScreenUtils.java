@@ -23,6 +23,7 @@ public class ScreenUtils {
 
     public static final int NEAREST_PIXEL_GAP = 3;
     private static int zoneMarkerCounter = 1;
+    private static double differenceKoef = 0.1;
 
     public static void main(String[] args) {
         ScreenUtils sc = new ScreenUtils();
@@ -31,7 +32,7 @@ public class ScreenUtils {
             sc.image2 = downloadImage(path2);
             sc.imageResult = new BufferedImage(image1.getWidth(), image1.getHeight(), BufferedImage.TYPE_INT_RGB);
             int[][] imageDifferenceArray = makeArrayWithDifferentCells(sc.image1, sc.image2);
-
+//            printArray(imageDifferenceArray);
             zoneMarkerCounter = markDifferentSections(imageDifferenceArray, zoneMarkerCounter);
             List<Zone> zoneList = new ArrayList<>();
             for (int i = 1; i < zoneMarkerCounter; i++) {
@@ -84,10 +85,12 @@ public class ScreenUtils {
 
         for (int i = 0; i < height - 2; i++) {
             for (int j = 0; j < width - 2; j++) {
-                if (image1.getRGB(j, i) == image2.getRGB(j, i)) {
-                    resultArray[i][j] = 0;
-                } else {
+                double difference = (Math.abs(image1.getRGB(j, i) - image2.getRGB(j, i)));
+                double factDifKoef = difference / Math.abs(image1.getRGB(j, i));
+                if (factDifKoef > differenceKoef) {
                     resultArray[i][j] = -1;
+                } else {
+                    resultArray[i][j] = 0;
                 }
             }
         }
